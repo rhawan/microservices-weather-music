@@ -7,13 +7,19 @@ server:
 
 eureka:
   instance:
-    #hostname: localhost
-    #metadataMap:
-      #instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     preferIpAddress: true
-    #leaseRenewalIntervalInSeconds: 5
-    #lease-expiration-duration-in-seconds: 5
+    hostname: localhost
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
   client:
-    #registryFetchIntervalSeconds: 5
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
+food:
+  openWeatherURI: http://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt&APPID=
+  openWeatherToken: 
+  
+  spotifyOAuthURI: https://accounts.spotify.com/api/token
+  spotifyClientId: 
+  spotifyClientSecret: 
+  spotifyPlaylistsURI: https://api.spotify.com/v1/browse/categories/{genre}/playlists?country=BR&limit=1
